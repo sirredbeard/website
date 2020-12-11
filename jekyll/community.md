@@ -30,7 +30,7 @@ Gitter, by clicking [here](https://gitter.im/nim-lang/Nim).
 
 <i class="fab fa-discord black li" aria-hidden="true"></i>
 Join the Discord chat room, which relays messages both ways between IRC and
-Discord, by clicking [here](https://discord.gg/ezDFDw2).
+Discord, by clicking [here](https://discord.gg/nim).
 
 <i class="fab black li" aria-hidden="true">m</i>
 Join the Matrix chat room, which relays messages both ways between IRC and
@@ -39,6 +39,9 @@ Matrix, by clicking [here](https://matrix.to/#/#freenode_#nim:matrix.org).
 <i class="fab fa-telegram black li" aria-hidden="true"></i>
 Join the Telegram chat room (it doesn't relay any messages)
 by clicking [here](https://t.me/nim_lang).
+
+<i class="fab fa-telegram black li" aria-hidden="true"></i>
+Join the Telegram chat room (in Italian) by clicking [here](https://t.me/nimitalia).
 
 You can join this chat room to ask a quick question, or engage in a discussion
 about features and projects that interest you. For formal feature requests and

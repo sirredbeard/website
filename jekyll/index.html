@@ -16,13 +16,19 @@ use_dark_highlighting: true
           It combines successful concepts from mature languages like Python,
           Ada and Modula.
         </h2>
+        <div class="text-centered">
+          <a class="pure-button pure-button-primary" href="{{ site.baseurl }}/install.html">Install Nim {{ site.nim_version }}</a>
+          <a class="pure-button" href="https://play.nim-lang.org/#ix=2lK1">Try it online</a>
+        </div>
         <h3>Efficient</h3>
         <ul>
           <li>Nim generates native dependency-free executables, not dependent on a virtual machine,
               which are small and allow easy redistribution.</li>
           <li>The Nim compiler and the generated executables support all major platforms like
               Windows, Linux, BSD and macOS.</li>
-          <li>Fast deferred reference counting memory management that supports real-time systems.</li>
+          <li>Nim's memory management is deterministic and customizable with destructors and move
+              semantics, inspired by C++ and Rust.
+              It is well-suited for embedded, hard-realtime systems.</li>
           <li>Modern concepts like zero-overhead iterators and compile-time evaluation
               of user-defined functions, in combination with the preference of value-based
               datatypes allocated on the stack, lead to extremely performant code.</li>
@@ -42,11 +48,6 @@ use_dark_highlighting: true
           <li>Modern type system with local type inference, tuples, generics and sum types.</li>
           <li>Statements are grouped by indentation but can span multiple lines.</li>
         </ul>
-
-        <div class="text-centered">
-          <a class="pure-button pure-button-primary" href="{{ site.baseurl }}/install.html">Install</a>
-          <a class="pure-button" href="{{ site.baseurl }}/learn.html">Learn Nim</a>
-        </div>
       </div>
 
       <div class="pure-u-1 pure-u-md-2-5">
@@ -73,14 +74,13 @@ for person in people:
 # Thanks to Nim's 'iterator' and 'yield' constructs,
 # iterators are as easy to write as ordinary
 # functions. They are compiled to inline loops.
-iterator oddElements[Idx, T](a: array[Idx, T]): T =
-  var i = 1
-  while i < a.len:
-    yield a[i]
-    i += 2
+iterator oddNumbers[Idx, T](a: array[Idx, T]): T =
+  for x in a:
+    if x mod 2 == 1:
+      yield x
 
-for x in oddElements([10, 20, 30, 40, 50, 60]):
-  echo x
+for odd in oddNumbers([3, 6, 9, 12, 15, 18]):
+  echo odd
 {% endhighlight %}
 
 
@@ -133,65 +133,6 @@ for o in opcodes:
   </div>
   <div class="text-centered">
   <a class="pure-button" href="{{ "/blog.html" | prepend: site.baseurl }}">All articles</a>
-  </div>
-</section>
-
-<section class="background-faded call-to-action feature-projects">
-  <section class="content">
-    <h1 class="section-heading">Featured projects</h1>
-    <div class="pure-g center">
-
-      <div class="pure-u-1-1 pure-u-md-1-2">
-        <div class="project-container">
-          <h2>
-            <a href="https://github.com/pragmagic/karax">Karax</a>
-          </h2>
-          <span class="tag">SPA framework</span>
-          <p>
-            Karax is a framework for developing single page applications in Nim.
-            Leverage Nim's macro system to produce a framework that allows for the
-            development of applications that are boilerplate free.
-          </p>
-        </div>
-      </div>
-
-      <div class="pure-u-1-1 pure-u-md-1-2">
-        <div class="project-container">
-          <h2>
-            <a href="https://github.com/status-im/nimbus">Nimbus</a>
-          </h2>
-          <span class="tag">Ethereum client</span>
-          <p>
-            Nimbus aims to be a sharding client for Ethereum 2.0 Blockchain.
-            Ethereum will potentially be on embedded systems, Nimbus will be
-            designed to perform well on IoT and personal mobile devices.
-          </p>
-        </div>
-      </div>
-
-    </div>
-    <div class="text-centered">
-      <a class="pure-button pure-button-primary" href="https://github.com/trending/nim">Find more projects</a>
-    </div>
-  </section>
-</section>
-
-<section class="content center-banner">
-  <h1 class="section-heading">
-    <i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i>
-    Learn Nim today
-  </h1>
-  <div class="pure-g center">
-    <div class="pure-u-1-2">
-      <h3>
-        Build command-line applications, games, web servers, kernels and everything
-        else in between. Nim has a low barrier to entry and offers powerful
-        features you won't find in many mainstream programming languages.
-      </h3>
-    </div>
-    <div class="pure-u-1 center">
-      <a class="pure-button" href="{{ site.baseurl }}/learn.html">Get started now</a>
-    </div>
   </div>
 </section>
 
@@ -248,28 +189,6 @@ for o in opcodes:
   </div>
 </section>
 
-<section class="background-faded call-to-action">
-  <section class="content text-centered">
-    <h1>Top sponsors</h1>
-    <div class="pure-g center">
-      <div class="pure-u-2-3">
-        {% for sponsor in site.data.sponsors %}
-          {% if sponsor.level == "250" %}
-            <div class="sponsor-container">
-              <a href="{{sponsor.url}}">
-                <img src="{{ site.baseurl }}{{sponsor.logo}}"/>
-                <span class="green tag">+${{sponsor.this_month}}/month</span>
-                <p class="title">{{sponsor.name}}</p>
-              </a>
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-    <a class="pure-button" href="{{ site.baseurl }}/sponsors.html">See more</a>
-  </section>
-</section>
-
 <section class="jumbotron" id="community">
   <section class="content">
     <h1>Community</h1>
@@ -278,7 +197,7 @@ for o in opcodes:
         <h2>Real-time chat</h2>
         <p><a href="irc://freenode.net/nim"><i class="fc fa-irc">#</i>FreeNode#nim</a></p>
         <p><a href="https://gitter.im/nim-lang/Nim"><i class="fab fa-gitter"></i>Gitter/Nim</a></p>
-        <p><a href="https://discord.gg/ezDFDw2"><i class="fab fa-discord"></i>Discord/Nim</a></p>
+        <p><a href="https://discord.gg/nim"><i class="fab fa-discord"></i>Discord/Nim</a></p>
         <p><a href="https://matrix.to/#/#freenode_#nim:matrix.org"><i class="fab i">m</i>#nim:matrix.org</a></p>
         <p><a href="https://irclogs.nim-lang.org"><i class="fc fa-irc">#</i>IRC Logs</a></p>
         <p><a href="https://t.me/nim_lang"><i class="fab fa-telegram"></i>Telegram/nim_lang</a></p>
